@@ -11,8 +11,8 @@
     var initialPoints = [
     ]
 
-    function rollDice() {
-      return Math.floor(Math.random() * numberOfPoints);
+    function rollDice(nop) {
+      return Math.floor(Math.random() * nop);
     }
 
     function drawPoint(context, point, fillStyle = "#3335DD", size = 1) {
@@ -27,10 +27,10 @@
       }
     }
 
-    function go(context, initialPoint) {
+    function go(context, borderPoints, initialPoint) {
       var start = new Date().getTime();
 
-      for (var point of initialPoints) {
+      for (var point of borderPoints) {
         drawPoint(context, point, "#FF0000", 3)
       }
 
@@ -46,10 +46,10 @@
           // 0
         // )
 
-        var diceResult = rollDice()
+        var diceResult = rollDice(borderPoints.length)
         // console.log(diceResult)
 
-        point = getHalfwayPoint(initialPoints[diceResult], point)
+        point = getHalfwayPoint(borderPoints[diceResult], point)
       }
 
       var end = new Date().getTime();
@@ -68,7 +68,7 @@
       } else {
         plot.onclick = null
         var ctxt = plot.getContext("2d")
-        go(ctxt, p)
+        go(ctxt, initialPoints, p)
       }
     }
   </script>
