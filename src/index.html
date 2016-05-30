@@ -37,17 +37,9 @@
       var point = initialPoint
 
       for (var i = 0; i < 1000000; i++) {
-
-        // console.log(point)
-        // setTimeout(
-        //   function () {
         drawPoint(context, point) 
-          // }.bind(Object.assign({}, point)), 
-          // 0
-        // )
 
         var diceResult = rollDice(borderPoints.length)
-        // console.log(diceResult)
 
         point = getHalfwayPoint(borderPoints[diceResult], point)
       }
