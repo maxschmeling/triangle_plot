@@ -4,7 +4,23 @@
   <title>Triangle Plot</title>
 </head>
 <body>
-  <canvas id="plot" />
+  <canvas id="plot" width="400" height="400" style="position: absolute; top: 100px; left: 100px; background-color: gray" />
+
+  <script type="text/javascript">
+    var plot = document.getElementById("plot")
+    var ctxt = plot.getContext("2d")
+
+    var initialPoints = [
+      { x: 25, y: 25 },
+      { x: 375, y: 25 },
+      { x: 200, y: 375 }
+    ]
+
+    for (var point of initialPoints) {
+      ctxt.fillStyle = "#FF0000";
+      ctxt.fillRect(point.x, point.y, 3, 3);
+    }
+  </script>
 </body>
 </html>
 
