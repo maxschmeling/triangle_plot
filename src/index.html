@@ -8,11 +8,18 @@
 
   <script type="text/javascript">
     var numberOfPoints = 4
+    var iterations = 10000000
     var initialPoints = [
     ]
+    var diceRollCounters = {}
 
     function rollDice(nop) {
-      return Math.floor(Math.random() * nop);
+      var result = Math.floor(Math.random() * nop);
+
+      if (!diceRollCounters[result]) { diceRollCounters[result] = 0 }
+      diceRollCounters[result] += 1
+
+      return result
     }
 
     function drawPoint(context, point, fillStyle = "#3335DD", size = 1) {
@@ -36,7 +43,7 @@
 
       var point = initialPoint
 
-      for (var i = 0; i < 1000000; i++) {
+      for (var i = 0; i < iterations; i++) {
         drawPoint(context, point) 
 
         var diceResult = rollDice(borderPoints.length)
@@ -46,6 +53,11 @@
 
       var end = new Date().getTime();
       console.log("Drawing complete in " + ((end - start) / 1000) + " seconds.");
+
+      var expectedRolls = (iterations / Object.keys(diceRollCounters).length)
+
+      console.log(diceRollCounters)
+      console.log(Object.keys(diceRollCounters).map((k) => { return diceRollCounters[k] }).map((r) => (expectedRolls - r) / expectedRolls))
     }
 
     var plot = document.getElementById("plot")
