@@ -4,11 +4,11 @@
   <title>Triangle Plot</title>
 </head>
 <body>
-  <canvas id="plot" width="6000" height="6000" style="position: absolute; top: 0; left: 0; background-color: gray" />
+  <canvas id="plot" width="2000" height="2000" style="position: absolute; top: 0; left: 0; background-color: gray" />
 
   <script type="text/javascript">
-    var numberOfPoints = 4
-    var iterations = 10000000
+    var numberOfPoints = 3
+    var iterations = 1000000
     var initialPoints = [
     ]
     var diceRollCounters = {}
@@ -44,7 +44,7 @@
       var point = initialPoint
 
       for (var i = 0; i < iterations; i++) {
-        drawPoint(context, point) 
+        drawPoint(context, point)
 
         var diceResult = rollDice(borderPoints.length)
 
@@ -78,4 +78,3 @@
   </script>
 </body>
 </html>
-
